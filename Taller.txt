@@ -1,0 +1,239 @@
+Punto 5
+
+int[][] board = {
+            {0, 1, 2, 3},
+            {4, 5, 6, 7},
+            {8, 9, 0, 1},
+            {2, 3, 4, 5}
+        };
+        int[][] boardVisible = new int[4][4];
+        boolean[][] cardsDiscovered = new boolean[4][4];
+        int puntos = 0;
+        Scanner scanner = new Scanner(System.in);
+        while (puntos < 10) {
+            // Mostrar tablero
+            showBoard(boardVisible);
+            // Pedir posiciones al usuario
+            System.out.println("Ingresa las coordenadas de dos cartas (fila columna):");
+            int row1 = scanner.nextInt();
+            int column1 = scanner.nextInt();
+            int row2 = scanner.nextInt();
+            int column2 = scanner.nextInt();
+            // Verificar si las posiciones son válidas
+            if (!esPosicionValida(row1, column1) || !esPosicionValida(row2, column2)) {
+                System.out.println("Posiciones inválidas. Inténtalo de nuevo.");
+                continue;
+            }
+            // Mostrar el valor de las cartas
+            System.out.println("Carta 1: " + board[row1][column1]);
+            System.out.println("Carta 2: " + board[row2][column2]);
+            // Verificar si las cartas son iguales
+            if (board[row1][column1] == board[row2][column2]) {
+                if (!cardsDiscovered[row1][column1]) {
+                    puntos++;
+                    cardsDiscovered[row1][column1] = true;
+                }
+                if (!cardsDiscovered[row2][column2]) {
+                    puntos++;
+                    cardsDiscovered[row2][column2] = true;
+                }
+                System.out.println("¡Cartas iguales! Puntos: " + puntos);
+            } else {
+                System.out.println("¡Cartas diferentes!");
+            }
+            // Actualizar el tablero visible
+            boardVisible[row1][column1] = board[row1][column1];
+            boardVisible[row2][column2] = board[row2][column2];
+        }
+        System.out.println("¡Felicidades, has ganado!");
+        scanner.close();
+    }
+    public static void showBoard(int[][] board) {
+        System.out.println("Tablero:");
+        for (int[] row : board) {
+            for (int card : row) {
+                System.out.print(card + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static boolean esPosicionValida(int row, int column) {
+        return row >= 0 && row < 4 && column >= 0 && column < 4;
+    }
+}
+
+Punto 6
+
+public class MyClass {
+    public static void main(String args[]) {
+        int[] num =  {1,2,3,4,5,6,7,8};
+        String[] letter={"A","B","C","D","E","F","G", "H"};
+        Object[][] matriz = new Object[4][4];
+        int x=0;
+        for (int f=0; f<4; f++){
+                for(int c=0; c<4; c+=2){
+                    matriz[f][c]=letra[x];
+                    matriz[f][c+1]=num[x];
+                    x+=1;
+                }
+        }
+        System.out.println(matriz[0][0] +"|"+matriz[0][1]+"|"+matriz[0][2]+"|"+matriz[0][3]);
+        System.out.println(matriz[1][0] +"|"+matriz[1][1]+"|"+matriz[1][2]+"|"+matriz[1][3]);
+        System.out.println(matriz[2][0] +"|"+matriz[2][1]+"|"+matriz[2][2]+"|"+matriz[2][3]);
+        System.out.println(matriz[3][0] +"|"+matriz[3][1]+"|"+matriz[3][2]+"|"+matriz[3][3]);
+    }
+}
+
+Punto 8
+
+Scanner scanner = new scanner(System.in);
+        System.out.println("Ingrese tamaño del vector 1: ");
+        int sizeVectorOne = scanner.nextInt();
+        int [] verctorOne = new int [sizeVectorOne];
+        int count= 0;
+        int [] vectorFinal = new int [sizeVectorOne];
+        int temporal = 0;
+        String result = "";
+        for(int i=0; i<sizeVectorOne; i++){
+            System.out.println("Ingrese numero en la posicion" + " " + (i+1));
+            int answer = scanner.nextInt();
+            verctorOne[i] = answer;
+        }
+        System.out.println("Ingrese tamaño del vector 2: ");
+        int sizeVectorTwo = scanner.nextInt();
+        int [] vectorTwo = new int [sizeVectorTwo];
+        for(int i=0; i<sizeVectorTwo; i++){
+            System.out.println("Ingrese numero en la posicion" + " " + (i+1));
+            int answerTwo = scanner.nextInt();
+            vectorTwo[i] = answerTwo;
+        }
+        for(int i=0; i<sizeVectorOne; i++){
+            for(int j=0; j<sizeVectorTwo; j++){
+                if(verctorOne[i]==vectorTwo[j]){
+                    vectorFinal[count++] = verctorOne[i];
+                }
+            }
+        }
+        for (int i = 0; i < vectorFinal.length; i++) {
+         for (int j = 1; j < (vectorFinal.length - i); j++) {
+            if (vectorFinal[j - 1] > vectorFinal[j]) {
+                temporal = vectorFinal[j - 1];
+                vectorFinal[j - 1] = vectorFinal[j];
+                vectorFinal[j] = temporal;
+            }
+          }
+        }
+        for(int i = 0; i < vectorFinal.length; i++){
+            if(vectorFinal[i]==0)
+            continue;    
+           result += vectorFinal[i] + ", ";
+        }
+    System.out.println(result);
+
+Punto 17
+
+int [] vector  = {5,21,6,45,1,2,4};
+        int [] vectorPairs = new int[vector.length];
+        int [] vectorOdd = new int[vector.length];
+        int [] vectorFinal = new int[vector.length];
+        int temporal =0;
+        int countPairs = 0;
+        int countOdd = 0;
+        for(int i=0; i<vector.length; i++){
+            if(vector[i]%2==0){
+                vectorPairs[countPairs++]=vector[i];
+            }else{
+                vectorOdd[countOdd++]=vector[i];   
+                }
+            }
+        for (int i = 0; i < countPairs; i++) {
+         for (int j = 1; j < (countPairs - i); j++) {
+            if (vectorPairs[j - 1] > vectorPairs[j]) {
+                temporal = vectorPairs[j - 1];
+                vectorPairs[j - 1] = vectorPairs[j];
+                vectorPairs[j] = temporal;
+            }
+          }
+        }
+        for (int i = 0; i < countOdd; i++) {
+         for (int j = 1; j < (countOdd - i); j++) {
+            if (vectorOdd[j - 1] < vectorOdd[j]) {
+                temporal = vectorOdd[j - 1];
+                vectorOdd[j - 1] = vectorOdd[j];
+                vectorOdd[j] = temporal;
+            }    
+          }
+        }
+        for(int i=0; i<countPairs; i++) {
+            vectorFinal[i]=vectorPairs[i];            
+        }
+        for(int j=0; j<countOdd; j++) {
+            vectorFinal[countPairs+j]=vectorOdd[j];
+        }
+        System.out.println(Arrays.toString(vectorFinal));
+
+Punto 20
+
+int[][] ratings = {
+    {90, 85, 70, 60, 75, 80},
+    {75, 80, 65, 70, 85, 90},
+    {65, 70, 75, 80, 85, 90},
+    {70, 75, 80, 85, 90, 95},
+    {85, 90, 95, 85, 70, 75},
+    {60, 65, 70, 75, 80, 85},
+    {70, 75, 80, 85, 90, 95},
+    {75, 80, 85, 90, 95, 85},
+    {80, 85, 90, 95, 85, 70},
+    {65, 70, 75, 80, 85, 90},
+    {70, 75, 80, 85, 90, 95},
+    {75, 80, 85, 90, 95, 85},
+    {85, 90, 95, 85, 70, 75},
+    {90, 85, 70, 60, 75, 80},
+    {75, 80, 65, 70, 85, 90},
+    {65, 70, 75, 80, 85, 90},
+    {70, 75, 80, 85, 90, 95},
+    {85, 90, 95, 85, 70, 75},
+    {60, 65, 70, 75, 80, 85},
+    {70, 75, 80, 85, 90, 95},
+    {75, 80, 85, 90, 95, 85},
+    {80, 85, 90, 95, 85, 70},
+    {65, 70, 75, 80, 85, 90}                
+};
+double[] averagesStudents = new double[ratings.length];
+int numbersSubject = ratings[0].length;
+double[] averagesSubject = new double[numbersSubject];
+int[] approvedSubject = new int[numbersSubject];
+int[] failedSubject = new int[numbersSubject];
+for (int i = 0; i < ratings.length; i++) {
+    int sum = 0;
+    for (int j = 0; j < ratings[i].length; j++) {
+        sum += ratings[i][j];
+    }
+    averagesStudents[i] = (double) sum / numbersSubject;
+}
+for (int j = 0; j < numbersSubject; j++) {
+    int sum = 0;
+    for (int i = 0; i < ratings.length; i++) {
+        sum += ratings[i][j];
+        if (ratings[i][j] >= 60) {
+            approvedSubject[j]++;
+        } else {
+            failedSubject[j]++;
+        }
+    }
+    averagesSubject[j] = (double) sum / ratings.length;
+}
+System.out.println("Promedio de cada estudiante:");
+for (int i = 0; i < averagesStudents.length; i++) {
+    System.out.println("Estudiante " + (i+1) + ": " + averagesStudents[i]);
+}
+System.out.println("Número de estudiantes que aprobaron y reprobaron cada materia:");
+for (int j = 0; j < numbersSubject; j++) {
+    System.out.println("Materia " + (j+1) + ": Aprobados: " + approvedSubject[j] + ", Reprobados: " + failedSubject[j]);
+}
+System.out.println("Promedio de cada materia:");
+for (int j = 0; j < averagesSubject.length; j++) {
+    System.out.println("Materia " + (j+1) + ": " + averagesSubject[j]);
+    }
+}
+}
